@@ -5,31 +5,54 @@ import random
 ## models.py
 class Game:
     def __init__(self):
-        self.board   = [[0],[1],[2],[3],[4],[5],[6],[7],[8],]
-        self.playerh = ''
-        random.seed()
-        self.playerc = '' #random.randomint(0,8)
+        self.board    = [[0],[1],[2],
+                         [3],[4],[5],
+                         [6],[7],[8],]
+        self.player   = ''  
+        self.man      = 0
+        self.machine  = 0
+        self.goes_first = True
+        self.turn     = 0
+        self.winner   = (
+                 # Horizontal Winning Sets
+                 [0, 1, 2],
+                 [3, 4, 5],
+                 [6, 7, 8],
+                 # Verticle Winning Sets
+                 [0, 3, 6],
+                 [1, 4, 7],
+                 [2, 5, 8],
+                 # Diagonal Winning Sets
+                 [0, 4, 8],
+                 [2, 4, 6]
+                )
 
-    w = (# Horizontal
-                 set([1, 2, 3]),
-                 set([4, 5, 6]),
-                 set([7, 8, 9]),
-                 # Verticle
-                 set([1, 4, 7]),
-                 set([2, 5, 8]),
-                 set([3, 6, 9]),
-                 # Diagonal
-                 set([1, 5, 9]),
-                 set([3, 5, 7]))
+    
+    # Number Turns Taken
+    def turn_incr(self):
+        self.turn += 1
+        return self.turn
 
-    def player_turn(self):
-        self.playerc 
-        return None
 
+    def is_winner(self,winner=0):
+        player = self.player
+        if player:
+            winner = player
+        return winner
+
+    
+    def whos_turn(self):
+        if self.man:
+            return self.man
+        else:
+            return self.machine
+    
+
+    # Display Board
     def print_board(self):
         print "--A-TicTacToe-Game--"
-        for i in range(3):
-            print " ",
+        for i in xrange(3):
+            print ' ',
             for j in range(3):
                 if self.board[i*3+j] == 1:
                     print 'X',
@@ -46,50 +69,12 @@ class Game:
             else:
                 print
 
-    
-
-
-class Game2:
-    def __init__(self):
-        self.board = [
-                    ["X", "O", "X"],
-                    ["O", "O", " "],
-                    ["X", "O", "1"]
-                    ]
-        self.player = 1
-        self.playerC = 0
-
 
 
 g = Game()
 
-
 print g.board[:]
 print len(g.board)
-#fibi=fib()
-#print fibi.next()
 
 g.print_board()
-#print fibi.next()
-## views.py
 
-
-
-
-
-
-
-
-
-## urls.py ## Control
-
-
-
-
-
-
-## templates
-
-# base.html
-
-#
